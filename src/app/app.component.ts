@@ -33,7 +33,7 @@ export class AppComponent implements OnInit {
     this.simulateProgress();
   }
 
-  performFetch(details: PageDetails) {
+  performFetch(details: PageDetails): void {
     const { currentPage, pageSize } = details;
     this.currentPage = currentPage;
 
@@ -50,7 +50,7 @@ export class AppComponent implements OnInit {
     this.fetchTableData();
   }
 
-  private fetchTableData() {
+  private fetchTableData(): void {
     this.dataService.getData(this.currentPage, this.pageSize, this.sortDetails).subscribe({
       next: ({ data, totalSize }) => {
         this.tableData = data;
@@ -64,11 +64,11 @@ export class AppComponent implements OnInit {
     });
   }
 
-  onComplete() {
+  onComplete(): void {
     console.log('Loading finished...')
   }
 
-  simulateProgress() {
+  simulateProgress(): void {
     const interval = setInterval(() => {
       this.progress += 5;
       this.changeDetectorRef.detectChanges();

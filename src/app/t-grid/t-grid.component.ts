@@ -10,18 +10,14 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { TColumnComponent } from "./t-column/t-column.component";
-import { CommonModule, NgFor, NgIf } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Direction, PageDetails, SortDetails } from "../types";
 
 @Component({
   selector: 't-grid',
   standalone: true,
   templateUrl: './t-grid.component.html',
-  imports: [
-    NgFor,
-    NgIf,
-    CommonModule
-  ],
+  imports: [CommonModule],
   styleUrl: './t-grid.component.scss',
 })
 export class TGridComponent<T> implements OnInit, OnChanges {
@@ -36,7 +32,6 @@ export class TGridComponent<T> implements OnInit, OnChanges {
   @ContentChildren(TColumnComponent) columns!: QueryList<TColumnComponent<T>>;
 
   currentSort: SortDetails<T> | null = null;
-
   currentPage = 1;
   totalPages = 0;
 
@@ -50,17 +45,17 @@ export class TGridComponent<T> implements OnInit, OnChanges {
     }
   }
 
-  calculateTotalPages() {
+  calculateTotalPages(): void {
     this.totalPages = Math.ceil(this.totalSize / this.pageSize);
   }
 
-  changePage(newPage: number) {
+  changePage(newPage: number): void {
     if (newPage < 1 || newPage > this.totalPages) return;
     this.currentPage = newPage;
     this.paginationChange.emit({ currentPage: this.currentPage, pageSize: this.pageSize });
   }
 
-  onPageSizeChange(event: Event) {
+  onPageSizeChange(event: Event): void {
     const selectElement = event.target as HTMLSelectElement;
     const newSize = parseInt(selectElement.value);
 
