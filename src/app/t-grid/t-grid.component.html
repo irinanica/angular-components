@@ -1,0 +1,50 @@
+<div class="table-component">
+  <div *ngIf="!data.length">Loading...</div>
+
+  <div class="table" *ngIf="data.length">
+    <table>
+      <thead>
+        <tr>
+          <th *ngFor="let column of columns" (click)="sort(column)" [class.sortable]="column.sortable">
+            {{ column.name }}
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let item of data">
+          <td *ngFor="let column of columns">
+            {{ item[column.property] }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="footer">
+      <div class="footer-content">
+        <div class="pagination-controls">
+          <div class="page-size-selector">
+            <select name="page-size" (change)="onPageSizeChange($event)">
+              <option [value]="5">5</option>
+              <option [value]="10" selected>10</option>
+              <option [value]="25">25</option>
+              <option [value]="100">100</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="current-page">
+          <span>Page {{currentPage}} of {{totalPages}}</span>
+        </div>
+
+        <button class="prev" (click)="changePage(currentPage - 1)" [disabled]="currentPage <= 1">&#8249;</button>
+        <button
+          class="next"
+          (click)="changePage(currentPage + 1)"
+          [disabled]="currentPage >= totalPages">
+          &#8250;
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,122 @@
+.table-component {
+  display: flex;
+  justify-content: center;
+
+  .table {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    table {
+      width: 70%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      font-family: Arial, sans-serif;
+      font-size: 0.9em;
+      color: #333;
+      background-color: #f4f4f4;
+    }
+
+    th, td {
+      padding: 10px 15px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #606060;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    th.sortable:hover, th.sortable:active {
+      background-color: #787878;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #eee;
+    }
+
+    tbody tr:hover {
+      background-color: #ccc;
+    }
+
+    .sortable {
+      cursor: pointer;
+    }
+  }
+
+  .footer {
+    width: 70%;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    background-color: #ddd;
+
+    .footer-content {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      width: 100%;
+
+      .prev, .next {
+        font-size: 24px;
+        padding: 6px;
+        margin: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        border: 0;
+        background-color: transparent;
+      }
+
+      .pagination-controls {
+        display: flex;
+        align-items: center;
+        margin-right: 12px;
+      }
+
+      .current-page {
+        display: flex;
+        margin-right: 12px;
+      }
+
+      .page-size-selector {
+        position: relative;
+        display: inline-block;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        overflow: hidden;
+        height: 36px;
+
+        &::after {
+          content: '\25BC';
+          color: #333;
+          position: absolute;
+          right: 10px;
+          top: 50%;
+          transform: translateY(-50%);
+          pointer-events: none;
+          font-size: 12px;
+        }
+
+        select[name="page-size"] {
+          border: none;
+          padding: 8px 30px 8px 8px;
+          border-radius: 6px;
+          font-size: 16px;
+          color: #333;
+          appearance: none;
+          cursor: pointer;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+}
